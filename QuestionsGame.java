@@ -1,12 +1,13 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.*;
 // This is a starter file for QuestionsGame.
 //
 // You should delete this comment and replace it with your class
 // header comment.
 
-public class QuestionsGame {
+	class QuestionsGame {
     
 	Node root;
 	Scanner in;
@@ -23,14 +24,14 @@ public class QuestionsGame {
 		in = new Scanner(System.in);
 	}
 
-	public void read( String filename) throws FileNotFoundException
+	public void read( String console) throws FileNotFoundException
 	{
-		f = new Scanner(new File(filename));
+		f = new Scanner(new File(console));
 		while(in.hasNext())
 			root = read( f.nextLine(), root);
 	}
 	
-	public Node  read(String o, Node t)
+	public Node read(String o, Node t)
 	{
 		if(o.equals("Q:") || o.equals("A:")) {
 			isQuestion = o.equals("Q:");
@@ -47,10 +48,9 @@ public class QuestionsGame {
 			t.right = read(o, t.right);
 		}
 		return t;
-	
 	}
 	
-	public void write( String filename)
+	public void write( PrintStream printStream)
 	{
 		
 	}
