@@ -33,19 +33,27 @@ import java.util.*;
 	
 	public Node read(String o, Node t)
 	{
-		if(o.equals("Q:") || o.equals("A:")) {
-			isQuestion = o.equals("Q:");
+		while(in.hasNext())
+			{
+			if(o.equals("Q:")) {
+				}
+				if( t == null)
+				{
+					t = new Node (in.next(), null, null);
+				}
+				else if (t.data.compareTo(o) > 0) {
+					t.left = read(in.next() , t.left);
+				}
+				else if(t.data.compareTo(o) < 0) {
+					t.right = read(in.next(), t.right);
+			}
 			return t;
-		}
-		if( t == null)
-		{
-			t = new Node (o, null, null);
-		}
-		else if (t.data.compareTo(o) > 0) {
-			t.left = read(o , t.left);
-		}
-		else if(t.data.compareTo(o) < 0) {
-			t.right = read(o, t.right);
+			if(o.equals("A:"))
+			{
+				String a = in.next();
+				if(t.left==null)
+					t.left = new Node (a , null);
+			}
 		}
 		return t;
 	}
