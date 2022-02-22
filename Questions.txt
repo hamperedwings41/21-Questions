@@ -1,5 +1,4 @@
 Q:
-questions.txt
 Is it an animal? 
 Q:
 Can it fly? 
