@@ -6,7 +6,7 @@ import java.util.*;
 
 public class RunFaster {
 	public static void main(String[] args) throws FileNotFoundException {
-        Scanner file = new Scanner(new File("Questions.txt"));
+        Scanner file = new Scanner(System.in);
 
        QuestionsGame test = new QuestionsGame();
        
