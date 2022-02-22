@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.*;
 // This is a starter file for QuestionsGame.
 //
@@ -12,11 +14,11 @@ import java.util.*;
 	Node root;
 	Scanner in;
 	
-	
+	Scanner s;
 	Scanner f;
 	
 	
-	boolean isQuestion;
+	boolean yesTo;
 	
 	public QuestionsGame()
 	{
@@ -26,6 +28,7 @@ import java.util.*;
 
 	public void read( String console) throws FileNotFoundException
 	{
+		s = new Scanner(System.in);
 		f = new Scanner(new File(console));
 		while(in.hasNext())
 			root = read( f.nextLine(), root);
@@ -48,28 +51,50 @@ import java.util.*;
 					t.right = read(in.next(), t.right);
 			}
 			return t;
+			}
 			if(o.equals("A:"))
 			{
-				String a = in.next();
 				if(t.left==null)
-					t.left = new Node (a , null);
+					t.left =  new Node (in.next(), null, null);
+				if(t.left != null)
+					t.right =  new Node (in.next(), null, null);
 			}
-		}
 		return t;
 	}
+
+		public void write(Node t) throws IOException
+	    {
+
+	        PrintWriter save = new PrintWriter("save.txt");
+	        
+	        if(t != null)
+	 	   {
+	        	save.println(t.data + " ");
+	 		   write(t.left);
+	 		   write(t.right);
+	 	   }
+	        save.close();
+	    }
 	
-	public void write( PrintStream printStream)
+	public void askQuestions(Node t)
 	{
-		
-	}
-	
-	public void askQuestions( String filename)
-	{
-		
+		if(yesTo)
+			System.out.println(t.right.data);
+		System.out.println(t.left.data);
 	}
 	
 	public boolean yesTo(String prompt)
 	{
+		while(in.hasNext())
+		{
+			if(s.next() == "Y")
+			{
+				yesTo = true;
+				return true;
+			}
+			yesTo = false;	
+			return false;
+		}
 		return false;
 	}
 	
